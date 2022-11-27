@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>Admin Portal</h1>
+    <h1>Testing Goop</h1>
     <button>Manage Users (WIP)</button>
     <button>Manage Articles (WIP)</button>
     <br>
