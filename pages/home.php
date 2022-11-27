@@ -10,6 +10,7 @@
     <h1>The Shallot</h1>
     <h2>Fake News Only</h2>
     <h1>Testing Goop</h1>
+    <h2>GOOP BANANA</h2>
     <a href="login.html">Click to login</a>
     <br>
     <button>Admin Portal</button>
