@@ -9,10 +9,10 @@
 <body>
     <h1>The Shallot</h1>
     <h2>Fake News Only</h2>
-    <a href="login.html">Click to login</a>
+    <a href="index.php">Click to login</a>
     <br>
     <button>Admin Portal</button>
-    <a href="admin.html">Click to go to admin portal (WIP)</a>
+    <a href="admin.php">Click to go to admin portal (WIP)</a>
     <hr>
 </body>
 </html>

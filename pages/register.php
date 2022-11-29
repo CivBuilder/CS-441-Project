@@ -13,7 +13,7 @@
     if (isset($_SESSION['regErr'])) {
         switch($_SESSION['regErr']) {
             case "password":
-                echo 'Password must be at least 3 characters long';
+                echo "Password must be at least 3 characters";
                 break;
             case "duplicate":
                 echo 'Username is already taken';

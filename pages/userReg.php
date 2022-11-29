@@ -52,7 +52,7 @@ function duplicateUsername($usernameArg, $conn) {
 }
 
 // error in username - send back to registration page with error
-if (invalidUsername($username) || duplicateUsername($username, $conn || invalidPassword($password))) {
+if (invalidUsername($username) || duplicateUsername($username, $conn) || invalidPassword($password)) {
     header("location:$failLink");
     exit();
 }

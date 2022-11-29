@@ -25,10 +25,10 @@ $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 //print_r($users);
 if(sizeof($users)==1){
 
-    // get the user's type and username
-    $userType = $usertable[0]['type'];
-    $userName = $usertable[0]['username'];
-    echo 'We have a user:   ',$userType;
+    // // get the user's type and username
+    // $userType = $usertable[0]['type'];
+    // $userName = $usertable[0]['username'];
+    // echo 'We have a user:   ',$userType;
 
     // set the session
     session_start();
