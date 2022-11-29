@@ -7,8 +7,9 @@
     <title>User Registration</title>
 </head>
 <body>
-
+   
     <?php
+    // print out error
     session_start();                                // start session
     if (isset($_SESSION['regErr'])) {
         switch($_SESSION['regErr']) {
@@ -23,9 +24,6 @@
                 echo 'Username must be between 4 and 15 characters, have at least 1 letter and can only consist of letters, numbers and underscores.';
         }
         session_destroy();                          // end session
-    } else {
-        echo 'lets go';
-        
     }
     ?>
 
@@ -39,6 +37,8 @@
     
     <br>
     <!-- Clicking register will send user to home page -->
-    <a href="home.php">Click to go to homepage</a>
+    <a href="index.php">Click to Login</a>
+    <br>
+    <a href="changePassword.php">Click to Change Password</a>
 </body>
 </html>

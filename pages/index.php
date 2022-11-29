@@ -24,11 +24,9 @@
         echo '<p style="color: red;">',$_GET['err'],'</p>';
     }
     ?>
-    
+    <br>
     <a href="register.php">Click to Register</a>
-    <br>
-           
-    <br>
-    <a href="home.php">Click to go to homepage</a>
+    <br> 
+    <a href="changePassword.php">Click to Change Password</a>
 </body>
 </html>
