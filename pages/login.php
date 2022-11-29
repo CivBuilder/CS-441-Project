@@ -8,8 +8,20 @@
 </head>
 <body>
     <h1>login here</h1>
-    <a href="register.html">Click to register</a>
+
+
+
+    <form action="login.php" method="post">
+        Username: <input type="text" name="username" id=""><br>
+        Password: <input type="password" name="password" id=""><br>
+        <input type="submit" value="Login">
+    </form>
+    
+    
+    <a href="register.php">Click to Register</a>
     <br>
-    <a href="home.html">Click to go to homepage</a>
+           
+    <br>
+    <a href="home.php">Click to go to homepage</a>
 </body>
 </html>
