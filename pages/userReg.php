@@ -23,7 +23,8 @@ $password = $_POST['password'];
 
 // check if password is at least 3 characters
 function invalidPassword($passwordArg) {
-    if (!preg_match('/ /', $passwordArg)) {
+    if (!preg_match('/.{3,}/', $passwordArg)) {
+        $_SESSION['regErr'] = "password";
         return true;
     }
 
