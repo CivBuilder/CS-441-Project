@@ -7,7 +7,35 @@
     <title>User Registration</title>
 </head>
 <body>
+
+    <?php
+    session_start();                                // start session
+    if (isset($_SESSION['usernameErr'])) {
+        switch($_SESSION['usernameErr']) {
+            case "duplicate":
+                echo 'Username is already taken';
+
+                break;
+            case "invalid";
+                echo 'Username must be between 4 and 15 characters, have at least 1 letter and can only consist of letters, numbers and underscores.';
+        }
+        session_destroy();                          // end session
+    } else {
+        echo 'lets go';
+        
+    }
+    ?>
+
     <h1>Register here</h1>
-    <a href="home.html">Click to go to homepage</a>
+
+    <form action="userReg.php" method="post">
+        Username: <input type="text" name="username" id=""><br>
+        Password: <input type="password" name="password" id=""><br>
+        <input type="submit" value="Register">
+    </form>
+    
+    <br>
+    <!-- Clicking register will send user to home page -->
+    <a href="home.php">Click to go to homepage</a>
 </body>
 </html>
