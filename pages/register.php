@@ -10,8 +10,11 @@
 
     <?php
     session_start();                                // start session
-    if (isset($_SESSION['usernameErr'])) {
-        switch($_SESSION['usernameErr']) {
+    if (isset($_SESSION['regErr'])) {
+        switch($_SESSION['regErr']) {
+            case "password":
+                echo "Password must be at least 3 characters";
+                break;
             case "duplicate":
                 echo 'Username is already taken';
 

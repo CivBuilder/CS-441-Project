@@ -21,12 +21,21 @@ $conn = mysqli_connect('localhost', $user, $pass, $db);
 $username = $_POST['username'];
 $password = $_POST['password'];
 
+// check if password is at least 3 characters
+function invalidPassword($passwordArg) {
+    if (!preg_match('/.{3,}/', $passwordArg)) {
+        $_SESSION['regErr'] = "password";
+        return true;
+    }
+
+    return false;
+}
+
 // check if there are duplicate names or if name is allowed (regex)
 function invalidUsername($usernameArg) {
-
     // regex 
     if (!preg_match('/^[a-zA-Z0-9_](?=.*[a-zA-Z])[a-zA-Z0-9_]{3,14}$/', $usernameArg)) {
-        $_SESSION['usernameErr'] = "invalid";
+        $_SESSION['regErr'] = "invalid";
         return true;
     }
     return false;
@@ -36,14 +45,14 @@ function duplicateUsername($usernameArg, $conn) {
     $exists = "SELECT * FROM `usertable` WHERE `username` = '$usernameArg'";
     $num = $conn->query($exists);
     if ($num->num_rows == 1) {
-        $_SESSION['usernameErr'] = "duplicate";
+        $_SESSION['regErr'] = "duplicate";
         return true;
     }
     return false;       // no duplicate found
 }
 
 // error in username - send back to registration page with error
-if (invalidUsername($username) || duplicateUsername($username, $conn)) {
+if (invalidUsername($username) || duplicateUsername($username, $conn) || invalidPassword($password)) {
     header("location:$failLink");
     exit();
 }
@@ -54,7 +63,7 @@ $sql = "INSERT INTO `$dbSub`(`username`, `password`, `type`) VALUES ('$username'
 if($conn->query($sql)){
     // session_start();
     $_SESSION['username'] = $username;
-    $_SESSION['userType'] = 'user';
+    $_SESSION['type'] = 'user';
     header("location:$successLink");
 }else{
     echo $conn->error;
