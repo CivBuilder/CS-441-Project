@@ -29,17 +29,15 @@
         echo 'Connection failed' . mysqli_connect_error();
     }
 
-    $sql = "SELECT * FROM `usertable` ORDER BY `usertable`.`type` ASC";
-    $sqlResult = mysqli_query($conn, $sql);
-    $allUsers = mysqli_fetch_all($sqlResult);
-    $disabled = 'disabled';
+
     
     session_start();
     // $_SESSION['type'] = "admin";    // debug, manually set to admin :)
-    
+    $disabled = 'disabled';
     if ($_SESSION['type'] == "admin") {
         $disabled = '';
     }
+
     // print out changes messages
     if (isset($_GET['changes'])) {
         echo '<p style="color: red;">',$_GET['changes'],'</p>';
@@ -47,13 +45,18 @@
     
     ?>
 
+    <!-- MANAGE USERS -->
     <table>
     <caption>Manage Users</caption>
     <th>User ID</th>
     <th>Username</th>
     <th>User Type</th>
-    <th>Delete User</th>
+    <th>Remove User</th>
     <?php
+    $sql = "SELECT * FROM `usertable` ORDER BY `usertable`.`type` ASC";
+    $sqlResult = mysqli_query($conn, $sql);
+    $allUsers = mysqli_fetch_all($sqlResult);
+    
     foreach($allUsers as $row) {
         echo "<tr><td>", $row[3], "</td>";             // print user ID
         echo "<td>", $row[0], "</td>";      // print user name
@@ -69,31 +72,32 @@
                 </select>
             </form>
             </td>';
+        } else if ($row[2] == "mod") {      // mod type is set
+            echo 
+            '<td> 
+            <form name="typeForm" method="post">
+                <select ',$disabled,' name="userTypeName',$row[3],'" onchange="this.form.submit();">
+                    <option value="mod">mod</option>
+                    <option value="user">user</option>
+                </select> 
+            </form>
+            </td>';
+        } else if ($row[2] == "admin") {      // onl type is set
+            echo 
+            '<td>
+            <select disabled name="userTypeName',$row[3],'">
+                <option value="admin">admin</option>
+            </select>
+            </td>';
+        }
 
-            } else if ($row[2] == "mod") {      // mod type is set
-                echo 
-                '<td> 
-                <form name="typeForm" method="post">
-                    <select ',$disabled,' name="userTypeName',$row[3],'" onchange="this.form.submit();">
-                        <option value="mod">mod</option>
-                        <option value="user">user</option>
-                    </select> 
-                </form>
-                </td>';
-            } else if ($row[2] == "admin") {      // onl type is set
-                echo 
-                '<td>
-                <select disabled name="userTypeName',$row[3],'">
-                    <option value="admin">admin</option>
-                </select>
-                </td>';
-            }
         if ($row[2] != "admin") {       // can only remove non-admin
         echo '<td>
         <form method="post">
             <input type="submit" name="deleteUser',$row[3],'" value="Remove">
-        </form></td></tr>';        // press to delete
+        </form></td>';        // press to delete
         }
+        echo "</tr>";
     }
     ?>
     </table>
@@ -120,6 +124,68 @@
         }   
     }
     ?>
+
+    <!-- MANAGE ARTICLES -->
+    
+    <!-- to do:
+    add functions to change status and delete articles 
+    add for loop to check -->
+
+    <br><br><br>
+    <table>
+        <caption>Manage Articles</caption>
+        <th>Article ID</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Status</th>
+        <th>Category</th>
+        <!-- <th>Approve</th> -->
+        <th>Decline</th>
+
+    <?php
+    $sql = "SELECT `title`,`category`,`username`,`status`,`id` FROM `newstable` ORDER BY `newstable`.`id` DESC";
+    $sqlResult = mysqli_query($conn, $sql);
+    $allArticles = mysqli_fetch_all($sqlResult);
+
+    foreach($allArticles as $row) {
+        echo "<tr><td>", $row[4], "</td>";   // print article ID
+        echo "<td>", $row[0], "</td>";       // title
+        echo "<td>", $row[2], "</td>";       // author
+        $deleteButton = "Remove";
+       
+        // print user type
+        if ($row[3] == "pending") {                // pending article
+            echo 
+            '<td>
+            <form method="post">
+                <select ',$disabled,' name="statusName',$row[3],'" onchange="this.form.submit();">
+                    <option value="pending">pending</option>
+                    <option value="approved">approved</option>
+                </select>
+            </form>
+            </td>';
+            $deleteButton = "Decline";
+        } else {                                // approved article
+            echo 
+            '<td> 
+            <form name="typeForm" method="post">
+                <select disabled name="statusName',$row[3],'" onchange="this.form.submit();">
+                    <option value="approved">approved</option>
+                </select> 
+            </form>
+            </td>';
+        }
+        echo "<td>", $row[1], "</td>";       // category
+
+        // press to decline
+        echo '<td>                           
+        <form method="post">
+            <input type="submit" name="deleteArticle',$row[4],'" value="',$deleteButton,'">
+        </form></td>';   
+        echo "</tr>";
+    }
+    ?>
+    </table>
 
 </body>
 </html>
