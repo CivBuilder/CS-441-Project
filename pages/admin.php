@@ -55,31 +55,64 @@
 
         // print user type
         if ($row[2] == "user") {     // user type is set
+            // echo 
+            // '<td> <select ',$disabled,' name="userTypeName" id="type"',$row[3],'>
+            //     <option value="userVal">user</option>
+            //     <option value="modVal">mod</option>
+            // </select> </td>';
+
+
+            //<select ',$disabled,' name="userTypeName',$row[3],'" id="type"',$row[3],'>
+            // <select name="modelS" onchange="this.form.submit();">
             echo 
-            '<td> <select ',$disabled,' name="userTypeName" id="type"',$row[3],'>
-                <option value="userVal">user</option>
-                <option value="modVal">mod</option>
-            </select> </td>';
+            '<td>
+            <form name="typeForm" method="post">
+                <select ',$disabled,' name="userTypeName',$row[3],'" onchange="this.form.submit();">
+                    <option value="userVal">user</option>
+                    <option value="modVal">mod</option>
+                </select>
+            </form>
+            </td>';
+
             } else if ($row[2] == "mod") {      // mod type is set
                 echo 
-                '<td> <select ',$disabled,' name="userTypeName" id="type"',$row[3],'>
-                    <option value="modVal">mod</option>
-                    <option value="userVal">user</option>
-                </select> </td>';
+                '<td> 
+                <form name="typeForm" method="post">
+                    <select ',$disabled,' name="userTypeName',$row[3],'" onchange="this.form.submit();">
+                        <option value="modVal">mod</option>
+                        <option value="userVal">user</option>
+                    </select> 
+                </form>
+                </td>';
             } else if ($row[2] == "admin") {      // mod type is set
                 echo 
-                '<td> <select disabled name="userTypeName" id="type"',$row[3],'>
+                '<td> <select disabled name="userTypeName',$row[3],'">
                     <option value="adminVal">admin</option>
                 </select> </td>';
+
+                
             }
     
-        echo '<td><input type="checkbox" id=user',$row[3],'></td></tr>';        // selection box for delete
+        echo '<td><input type="submit" name="deleteUser',$row[3],'" value="Remove"></td></tr>';        // selection box for delete
     }
+
+    // make any changes to user types
+    foreach($allUsers as $row) {
+        if (isset($_POST["userTypeName$row[3]"])) {
+            // echo "typeform set";
+            echo $_POST["userTypeName$row[3]"];
+            
+        } else {
+            // echo "not set";
+        }
+    }
+
     ?>
     </table>
-
+    
+        
     <!-- save changes button -->
-    <form action="adminSaveFunct.php">
+    <form action="adminSaveFunct.php" method="post">
         <input type="submit" value="Submit Changes" />
     </form>
     
