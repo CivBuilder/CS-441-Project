@@ -45,7 +45,10 @@
         }
         ?>
         <div class="button2">
-                <center><input type="submit" value="Register" href="register.php"></center>
+            <form action="register.php">
+                <center><input type="submit" value="Register" ></center>
+            </form>
+               
                 <!--<button class="btn btn-primary" type="button" href="register.php">Register</button>-->
             </div>
         <!--<a href="register.php" class = "register">Click to Register</a>-->
