@@ -34,8 +34,10 @@
     session_start();
     // $_SESSION['type'] = "admin";    // debug, manually set to admin :)
     $disabled = 'disabled';
-    if ($_SESSION['type'] == "admin") {
-        $disabled = '';
+    if (isset($_SESSION['type'])) {
+        if ($_SESSION['type'] == "admin") {
+            $disabled = '';
+        }
     }
 
     // print out changes messages
@@ -107,7 +109,7 @@
     foreach($allUsers as $row) {
         if (isset($_POST["userTypeName$row[3]"])) {     // change user type
             // echo "typeform set";
-            sleep(2);
+            // sleep(2);
             $newType = $_POST["userTypeName$row[3]"];
             $sql = "UPDATE `usertable` SET `type`='$newType' WHERE `id` = $row[3]";
             mysqli_query($conn, $sql);            
@@ -119,8 +121,7 @@
             $sql = "DELETE FROM `usertable` WHERE `id` = $row[3]";
             mysqli_query($conn, $sql);
             // header("Location: admin.php?changes=User Removed: $row[0]" );
-            echo "<meta http-equiv='refresh' content='0'>";// reload the page
-               
+            echo "<meta http-equiv='refresh' content='0'>";// reload the page 
         }   
     }
     ?>
@@ -142,6 +143,9 @@
         <th>Decline / Remove</th>
 
     <?php
+
+$disabled = '';
+
     $sql = "SELECT `title`,`category`,`username`,`status`,`id` FROM `newstable` ORDER BY `newstable`.`id` DESC";
     $sqlResult = mysqli_query($conn, $sql);
     $allArticles = mysqli_fetch_all($sqlResult);
@@ -158,7 +162,7 @@
             echo 
             '<td>
             <form method="post">
-                <select ',$disabled,' name="statusName',$row[3],'" onchange="this.form.submit();">
+                <select ',$disabled,' name="statusName',$row[4],'" onchange="this.form.submit();">
                     <option value="pending">pending</option>
                     <option value="approved">approved</option>
                 </select>
@@ -169,7 +173,7 @@
             echo 
             '<td> 
             <form name="typeForm" method="post">
-                <select disabled name="statusName',$row[3],'" onchange="this.form.submit();">
+                <select disabled name="statusName',$row[4],'" onchange="this.form.submit();">
                     <option value="approved">approved</option>
                 </select> 
             </form>
@@ -186,6 +190,26 @@
     }
     ?>
     </table>
+
+    <?php
+   
+    // approve or delete articles
+    foreach($allArticles as $row) {
+        if (isset($_POST["statusName$row[4]"])) {     // approve article
+            $sql = "UPDATE `newstable` SET `status`='approved' WHERE `id` = $row[4]";
+            mysqli_query($conn, $sql);            
+            echo "<meta http-equiv='refresh' content='0'>"; // reload the page
+        } 
+
+        if (isset($_POST["deleteArticle$row[4]"])) {       // decline or remove article
+            echo "remove";
+            $sql = "DELETE FROM `newstable` WHERE `id` = $row[4]";
+            mysqli_query($conn, $sql);
+            // header("Location: admin.php?changes=User Removed: $row[0]" );
+            echo "<meta http-equiv='refresh' content='0'>";// reload the page 
+        }   
+    }
+    ?>
 
 </body>
 </html>
