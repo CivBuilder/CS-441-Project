@@ -48,6 +48,7 @@
     ?>
 
     <table>
+    <caption>Manage Users</caption>
     <th>User ID</th>
     <th>Username</th>
     <th>User Type</th>
