@@ -9,34 +9,21 @@
 <body>
    
     <?php
-    // print out error
-    session_start();                                // start session
-    if (isset($_SESSION['regErr'])) {
-        switch($_SESSION['regErr']) {
-            case "password":
-                echo "Password must be at least 3 characters";
-                break;
-            case "duplicate":
-                echo 'Username is already taken';
-
-                break;
-            case "invalid";
-                echo 'Username must be between 4 and 15 characters, have at least 1 letter and can only consist of letters, numbers and underscores.';
-        }
-        session_destroy();                          // end session
+    // print out registration error if there is one
+    if (isset($_GET['regErr'])) {
+        echo '<p style="color: red;">',$_GET['regErr'],'</p>';
     }
     ?>
 
     <h1>Register here</h1>
 
-    <form action="userReg.php" method="post">
+    <form action="registerfunct.php" method="post">
         Username: <input type="text" name="username" id=""><br>
         Password: <input type="password" name="password" id=""><br>
         <input type="submit" value="Register">
     </form>
     
     <br>
-    <!-- Clicking register will send user to home page -->
     <a href="index.php">Click to Login</a>
     <br>
     <a href="changePassword.php">Click to Change Password</a>

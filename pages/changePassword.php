@@ -14,6 +14,11 @@
         New Password: <input type="password" name="newPassword" id=""><br>
         <input type="submit" value="Change Password">
     </form>
+    <?php
+    if(isset($_GET['msg'])){
+        echo '<p style="color: red;">',$_GET['msg'],'</p>';
+    }
+    ?>
 
     <a href="index.php">Click to return to Login Page</a>
     <br>
