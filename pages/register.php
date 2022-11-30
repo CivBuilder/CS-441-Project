@@ -10,12 +10,7 @@
 </head>
 <body>
    
-    <?php
-    // print out registration error if there is one
-    if (isset($_GET['regErr'])) {
-        echo '<p style="color: red;">',$_GET['regErr'],'</p>';
-    }
-    ?>
+
     <div class='mainContainer'>
         <h1 class = "register">Register</h1>
 
@@ -40,22 +35,21 @@
             <div class="button">
                 <center><input type="submit" value="Register"></center>
             </div>
-           
+        
         </form>
+        
+        <?php
+        // print out registration error if there is one
+        if (isset($_GET['regErr'])) {
+            echo '<p style="color: red;">',$_GET['regErr'],'</p>';
+        }
+        ?>
 
-    <form action="registerfunct.php" method="post">
-        Username: <input type="text" name="username" id=""><br>
-        Password: <input type="password" name="password" id=""><br>
-        <input type="submit" value="Register">
-    </form>
-    
-    <br>
-    <a href="index.php">Click to Login</a>
-    <br>
-    <a href="changePassword.php">Click to Change Password</a>
         <br>
-        <!-- Clicking register will send user to home page -->
-        <a href="home.php">Click to go to homepage</a>
+        <a href="index.php">Click to Login</a>
+        <br>
+        <a href="changePassword.php">Click to Change Password</a>
+
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
