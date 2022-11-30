@@ -2,7 +2,7 @@
 
 // php file that logs users in from index page
 
-echo "username: $_POST[username] , password: $_POST[password] ";
+// echo "username: $_POST[username] , password: $_POST[password] ";
 // connect to db
 $user = 'root';
 $pass = '';
@@ -25,15 +25,16 @@ $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 //print_r($users);
 if(sizeof($users)==1){
 
-    // // get the user's type and username
-    // $userType = $usertable[0]['type'];
-    // $userName = $usertable[0]['username'];
-    // echo 'We have a user:   ',$userType;
+    // get the user's type and username
+    $userType = $users[0]['type'];
+    $userName = $users[0]['username'];
 
     // set the session
     session_start();
     $_SESSION['username'] = $userName;
     $_SESSION['type'] = $userType;
+
+    echo $userName;
 
     header("Location: home.php");
 
