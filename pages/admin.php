@@ -12,7 +12,7 @@
     <button>Manage Users (WIP)</button>
     <button>Manage Articles (WIP)</button>
     <br>
-    <a href="home.html">Click to go to homepage</a>
+    <a href="home.php">Click to go to homepage</a>
 
     <br><br><br>
     <?php
@@ -35,7 +35,7 @@
     $disabled = 'disabled';
     
     session_start();
-    $_SESSION['type'] = "admin";    // debug, manually set to admin :)
+    // $_SESSION['type'] = "admin";    // debug, manually set to admin :)
     
     if ($_SESSION['type'] == "admin") {
         $disabled = '';
