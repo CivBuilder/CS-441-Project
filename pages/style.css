@@ -68,7 +68,7 @@ body{
     color : rgb(0, 0, 0);
     border-radius: 35px;
     border: 1px solid rgba(255,255,255,0.9);
-    background: rgba(220, 220, 220, 0.3);
+    background: rgba(255, 253, 253, 0.872);
     margin-bottom: 10px;
     
 }
@@ -79,7 +79,7 @@ body{
     color : rgb(0, 0, 0);
     border-radius: 35px;
     border: 1px solid rgba(255,255,255,0.9);
-    background: rgba(220, 220, 220, 0.3);
+    background: rgba(255, 253, 253, 0.872);
     margin-bottom: 10px;
     
 }
@@ -112,4 +112,5 @@ body{
     margin-top: 5px;
     font-weight: bold;
 }
+
 
