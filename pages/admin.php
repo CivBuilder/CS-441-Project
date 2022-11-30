@@ -126,7 +126,7 @@
     ?>
 
     <!-- MANAGE ARTICLES -->
-    
+
     <!-- to do:
     add functions to change status and delete articles 
     add for loop to check -->
@@ -137,10 +137,9 @@
         <th>Article ID</th>
         <th>Title</th>
         <th>Author</th>
-        <th>Status</th>
         <th>Category</th>
-        <!-- <th>Approve</th> -->
-        <th>Decline</th>
+        <th>Status</th>
+        <th>Decline / Remove</th>
 
     <?php
     $sql = "SELECT `title`,`category`,`username`,`status`,`id` FROM `newstable` ORDER BY `newstable`.`id` DESC";
@@ -151,6 +150,7 @@
         echo "<tr><td>", $row[4], "</td>";   // print article ID
         echo "<td>", $row[0], "</td>";       // title
         echo "<td>", $row[2], "</td>";       // author
+        echo "<td>", $row[1], "</td>";       // category
         $deleteButton = "Remove";
        
         // print user type
@@ -175,7 +175,7 @@
             </form>
             </td>';
         }
-        echo "<td>", $row[1], "</td>";       // category
+        
 
         // press to decline
         echo '<td>                           
