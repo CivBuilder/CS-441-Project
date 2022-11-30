@@ -40,7 +40,11 @@
     if ($_SESSION['type'] == "admin") {
         $disabled = '';
     }
-
+    // print out changes messages
+    if (isset($_GET['changes'])) {
+        echo '<p style="color: red;">',$_GET['changes'],'</p>';
+    }
+    
     ?>
 
     <table>
@@ -54,22 +58,13 @@
         echo "<td>", $row[0], "</td>";      // print user name
 
         // print user type
-        if ($row[2] == "user") {     // user type is set
-            // echo 
-            // '<td> <select ',$disabled,' name="userTypeName" id="type"',$row[3],'>
-            //     <option value="userVal">user</option>
-            //     <option value="modVal">mod</option>
-            // </select> </td>';
-
-
-            //<select ',$disabled,' name="userTypeName',$row[3],'" id="type"',$row[3],'>
-            // <select name="modelS" onchange="this.form.submit();">
+        if ($row[2] == "user") {                // user type is set
             echo 
             '<td>
-            <form name="typeForm" method="post">
+            <form method="post">
                 <select ',$disabled,' name="userTypeName',$row[3],'" onchange="this.form.submit();">
-                    <option value="userVal">user</option>
-                    <option value="modVal">mod</option>
+                    <option value="user">user</option>
+                    <option value="mod">mod</option>
                 </select>
             </form>
             </td>';
@@ -79,46 +74,49 @@
                 '<td> 
                 <form name="typeForm" method="post">
                     <select ',$disabled,' name="userTypeName',$row[3],'" onchange="this.form.submit();">
-                        <option value="modVal">mod</option>
-                        <option value="userVal">user</option>
+                        <option value="mod">mod</option>
+                        <option value="user">user</option>
                     </select> 
                 </form>
                 </td>';
-            } else if ($row[2] == "admin") {      // mod type is set
+            } else if ($row[2] == "admin") {      // onl type is set
                 echo 
-                '<td> <select disabled name="userTypeName',$row[3],'">
-                    <option value="adminVal">admin</option>
-                </select> </td>';
-
-                
+                '<td>
+                <select disabled name="userTypeName',$row[3],'">
+                    <option value="admin">admin</option>
+                </select>
+                </td>';
             }
-    
-        echo '<td><input type="submit" name="deleteUser',$row[3],'" value="Remove"></td></tr>';        // selection box for delete
+        if ($row[2] != "admin") {       // can only remove non-admin
+        echo '<td>
+        <form method="post">
+            <input type="submit" name="deleteUser',$row[3],'" value="Remove">
+        </form></td></tr>';        // press to delete
+        }
     }
+    ?>
+    </table>
+    <?php
 
     // make any changes to user types
     foreach($allUsers as $row) {
-        if (isset($_POST["userTypeName$row[3]"])) {
+        if (isset($_POST["userTypeName$row[3]"])) {     // change user type
             // echo "typeform set";
-            echo $_POST["userTypeName$row[3]"];
-            
-        } else {
-            // echo "not set";
-        }
-    }
+            sleep(2);
+            $newType = $_POST["userTypeName$row[3]"];
+            $sql = "UPDATE `usertable` SET `type`='$newType' WHERE `id` = $row[3]";
+            mysqli_query($conn, $sql);            
+            echo "<meta http-equiv='refresh' content='0'>"; // reload the page
+        } 
 
-    ?>
-    </table>
-    
-        
-    <!-- save changes button -->
-    <form action="adminSaveFunct.php" method="post">
-        <input type="submit" value="Submit Changes" />
-    </form>
-    
-    <?php
-    if (isset($_GET['msg'])) {
-        echo '<p style="color: red;">',$_GET['msg'],'</p>';
+        if (isset($_POST["deleteUser$row[3]"])) {       // delete user
+            // echo "User Removed: ", $row[1];
+            $sql = "DELETE FROM `usertable` WHERE `id` = $row[3]";
+            mysqli_query($conn, $sql);
+            // header("Location: admin.php?changes=User Removed: $row[0]" );
+            echo "<meta http-equiv='refresh' content='0'>";// reload the page
+               
+        }   
     }
     ?>
 
