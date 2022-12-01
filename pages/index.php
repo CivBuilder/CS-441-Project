@@ -45,14 +45,20 @@
                 <center><input type="submit" value="Register" ></center>
             </form>    
         </div>
+
+        <div class="button2">
+            <form action="changePassword.php">
+                <center><input type="submit" value="Change Password" ></center>
+            </form>    
+        </div>
         <?php
             // if error checking username and password
             if(isset($_GET['err'])){
                 echo '<p style="color: red;">',$_GET['err'],'</p>';
             }
         ?>
-
-        <a href="changePassword.php">Click to Change Password</a>
+        
+        <!--<a href="changePassword.php">Click to Change Password</a>-->
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
