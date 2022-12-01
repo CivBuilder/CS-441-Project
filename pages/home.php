@@ -34,6 +34,17 @@
         <h2>Fake News Only</h2>
         <hr>
         <?php echo "<h2> Welcome $username! </h2>"; ?>
+
+        <form action="searchContent.php" method="post">
+            Search for
+            <select name="searchType" id="searchType">
+                <option value="category">Category</option>
+                <option value="article">Article</option>
+            </select>
+            by name:
+            <input type="text" name="searchContent" id="">
+            <input type="submit" value="Search">
+        </form>
     </div>
 
     <div>
