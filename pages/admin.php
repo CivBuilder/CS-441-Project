@@ -108,8 +108,6 @@
     // make any changes to user types
     foreach($allUsers as $row) {
         if (isset($_POST["userTypeName$row[3]"])) {     // change user type
-            // echo "typeform set";
-            // sleep(2);
             $newType = $_POST["userTypeName$row[3]"];
             $sql = "UPDATE `usertable` SET `type`='$newType' WHERE `id` = $row[3]";
             mysqli_query($conn, $sql);            
@@ -117,10 +115,8 @@
         } 
 
         if (isset($_POST["deleteUser$row[3]"])) {       // delete user
-            // echo "User Removed: ", $row[1];
             $sql = "DELETE FROM `usertable` WHERE `id` = $row[3]";
             mysqli_query($conn, $sql);
-            // header("Location: admin.php?changes=User Removed: $row[0]" );
             echo "<meta http-equiv='refresh' content='0'>";// reload the page 
         }   
     }
@@ -179,7 +175,6 @@ $disabled = '';
             </form>
             </td>';
         }
-        
 
         // press to decline
         echo '<td>                           
@@ -192,7 +187,6 @@ $disabled = '';
     </table>
 
     <?php
-   
     // approve or delete articles
     foreach($allArticles as $row) {
         if (isset($_POST["statusName$row[4]"])) {     // approve article
@@ -202,10 +196,8 @@ $disabled = '';
         } 
 
         if (isset($_POST["deleteArticle$row[4]"])) {       // decline or remove article
-            echo "remove";
             $sql = "DELETE FROM `newstable` WHERE `id` = $row[4]";
             mysqli_query($conn, $sql);
-            // header("Location: admin.php?changes=User Removed: $row[0]" );
             echo "<meta http-equiv='refresh' content='0'>";// reload the page 
         }   
     }
