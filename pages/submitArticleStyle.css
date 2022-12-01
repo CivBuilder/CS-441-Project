@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,200&family=Oxygen&family=Piazzolla:ital,opsz,wght@1,8..30,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Newsreader:opsz,wght@6..72,200&family=Oxygen&family=Piazzolla:ital,opsz,wght@1,8..30,300&display=swap');
+
+body{
+    background: url('./photos/altBack.jpg') no-repeat center center/cover;
+    position: relative;
+    background-size: cover;
+    height: 100%;
+    background-attachment: fixed;
+   
+}
+
+.mainContainer{
+    
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.8);
+    color : #fff;
+    max-width: 1300px;
+    height: 690px;
+    margin: auto;
+    padding: 1rem;
+    flex-direction: column;
+    justify-content: space-between;
+    color:black;
+    margin-top: 20px;
+    border-radius: 35px;
+}
+
+.mainContainer .logo img{
+    height: 225px;
+}
+
+.mainContainer .article .text h4{
+    font-family: 'Newsreader', sans-serif;
+    font-size: medium;
+    font-weight: bold;
+    font-size: 23px;
+}
+
+::placeholder{
+    color:rgba(0, 0, 0, 0.474)
+}
+
+.mainContainer .article .text h4{
+    margin-bottom: 0px;
+    font-weight: bold;
+    font-family: 'Newsreader', sans-serif;
+}
+.mainContainer .article .textCat h4{
+    margin-bottom: 0px;
+    font-weight: bold;
+
+    font-family: 'Newsreader', sans-serif;
+}
+.mainContainer .article .input input{
+    padding: .7rem 1rem;
+    font-size: 1rem;
+    color : rgb(0, 0, 0);
+    border-radius: 35px;
+    border: 1px solid rgba(255,255,255,0.9);
+    background: rgba(255, 253, 253, 0.872);
+    margin-bottom: 10px;
+    width: 400px;
+}
+
+
+.mainContainer .article .form-group .text h4{
+    margin-top: 20px;
+    font-weight: bold;
+    font-family: 'Newsreader', sans-serif;
+}
+.mainContainer .article .button input{
+    padding: .7rem 1rem;
+    font-size: 1rem;
+    color : rgb(255, 255, 255);
+    border-radius: 35px;
+    border: 1px solid rgba(255,255,255,0.9);
+    background: url('./photos/background.jpg') no-repeat center center/cover;
+    margin-bottom: 10px;
+    width: 300px;
+    height: 40px;
+    margin-top: 5px;
+    font-weight: bold;
+}
