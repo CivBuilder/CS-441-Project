@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Shallot</title>
+    <link rel="stylesheet" href="homeStyle.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 
 <body>
@@ -51,89 +53,123 @@
         }
     }
     ?>
-    <a href="index.php">Click to logout</a>
-    <br>
-    <button>Admin Portal</button>
-    <a href="admin.php">Click to go to admin portal (WIP)</a>
-    <div style='text-align:center'>
-        <h1>The Shallot</h1>
-        <h2>Fake News Only</h2>
-        <hr>
-        <?php echo "<h2> Welcome $username! </h2>"; ?>
-
-        <form action="searchContent.php" method="post">
-            Search for
-            <select name="searchType" id="searchType">
-                <option value="category">Category</option>
-                <option value="article">Article</option>
-            </select>
-            by name:
-            <input type="text" name="searchContent" id="">
-            <input type="submit" value="Search">
+    <div class = "mainContainer">
+        <form action="logout.php" class="log"> 
+            <div class ="logout">
+                <div class="button">
+                    <input type="submit" value="Logout">
+                </div>
+            </div>
         </form>
-    </div>
+        <!--<a href="index.php">Click to logout</a>-->
+        <!--<button>Admin Portal</button>-->
+        <form action="admin.php" class="admin"> 
+            <div class ="portal">
+                <div class="button">
+                    <input type="submit" value="Admin Portal">
+                </div>
+            </div>
+        </form>
+        <!--<a href="admin.php">Click to go to admin portal (WIP)</a>-->
+        <div style='text-align:center' class="logo">
+            <img src="./photos/logoShallot.png" alt="">
+            <hr>
+            <?php echo "<h2> Welcome $username! </h2>"; ?>
 
-    <div>
-        <h3>Dashboard</h3>
-        <a href="submitArticle.php">Submit Article</a>
-    </div>
+            <form action="searchContent.php" method="post" class ="search">
+                Search for
+                <select name="searchType" id="searchType">
+                    <option value="category">Category</option>
+                    <option value="article">Article</option>
+                </select>
+                by name:
+                <span class="textBox">
+                    <input type="text" name="searchContent" >
+                </span>
+                <span class="textBtn">
+                    <input type="submit" value="Search">
+                </span>
+            </form>
+        </div>
 
-    <div>
-        <h1 style='text-align:center'><u>Newsfeed</u></h1>
-        <?php
-        if ($sports == 0 && $business == 0 && $technology == 0 && $politics == 0) {
-            echo "<h2 style='text-align:center'>You don't have any subscriptions yet, search for categories and subscribe to your interests</h2>";
-        } else {
-        ?>
-            <table>
+        <div class="dash">
+            <center><h3>Dashboard</h3></center>
+            <form action="submitArticle.php" class = "art">
+                <center><input type="submit" value="Submit Article"></center>
+            </form>
+        </div>
+
+        <div class="newsfeed">
+            <center><h1>Newsfeed</h1></center>
+            <?php
+            if ($sports == 0 && $business == 0 && $technology == 0 && $politics == 0) {
+                echo "<h2 style='text-align:center'>You don't have any subscriptions yet, search for categories and subscribe to your interests</h2>";
+            } else {
+            ?> 
+        </div>
+        <table class="table">
+            <thead>
                 <tr>
-                    <td> <b> Article Name</b></td>
-                    <td> <b> Author</b></td>
-                    <td> <b> Category</b></td>
+                <th scope="col">Article Name</th>
+                <th scope="col">Author</th>
+                <th scope="col">Category</th>
                 </tr>
-                <?php
-                if ($sports == 1) {
-                    $category = 'sports';
-                    $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `category` = '$category'";
-                    $articles = mysqli_query($conn, $sql);
-                    $articlesArray = mysqli_fetch_all($articles, MYSQLI_ASSOC);
-                    foreach ($articlesArray as $row) {
-                        echo '<tr><td> <a href="readArticle.php?article=', $row['title'], '">', $row['title'], "</a></td><td>", $row['username'], "</td><td>", $row['category'], "</td></tr>";
+            </thead>
+                <!--
+                <table>
+                    <tr>
+                        <td> <b> Article Name</b></td>
+                        <td> <b> Author</b></td>
+                        <td> <b> Category</b></td>
+                    </tr>
+                -->
+                <tbody class="table-group-divider">
+                    <?php
+                    if ($sports == 1) {
+                        $category = 'sports';
+                        $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `category` = '$category'";
+                        $articles = mysqli_query($conn, $sql);
+                        $articlesArray = mysqli_fetch_all($articles, MYSQLI_ASSOC);
+                        foreach ($articlesArray as $row) {
+                            echo '<tr><td> <a href="readArticle.php?article=', $row['title'], '">', $row['title'], "</a></td><td>", $row['username'], "</td><td>", $row['category'], "</td></tr>";
+                        }
                     }
-                }
-                if ($business == 1) {
-                    $category = 'business';
-                    $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `category` = '$category'";
-                    $articles = mysqli_query($conn, $sql);
-                    $articlesArray = mysqli_fetch_all($articles, MYSQLI_ASSOC);
-                    foreach ($articlesArray as $row) {
-                        echo '<tr><td> <a href="readArticle.php?article=', $row['title'], '">', $row['title'], "</a></td><td>", $row['username'], "</td><td>", $row['category'], "</td></tr>";
+                    if ($business == 1) {
+                        $category = 'business';
+                        $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `category` = '$category'";
+                        $articles = mysqli_query($conn, $sql);
+                        $articlesArray = mysqli_fetch_all($articles, MYSQLI_ASSOC);
+                        foreach ($articlesArray as $row) {
+                            echo '<tr><td> <a href="readArticle.php?article=', $row['title'], '">', $row['title'], "</a></td><td>", $row['username'], "</td><td>", $row['category'], "</td></tr>";
+                        }
                     }
-                }
-                if ($technology == 1) {
-                    $category = 'technology';
-                    $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `category` = '$category'";
-                    $articles = mysqli_query($conn, $sql);
-                    $articlesArray = mysqli_fetch_all($articles, MYSQLI_ASSOC);
-                    foreach ($articlesArray as $row) {
-                        echo '<tr><td> <a href="readArticle.php?article=', $row['title'], '">', $row['title'], "</a></td><td>", $row['username'], "</td><td>", $row['category'], "</td></tr>";
+                    if ($technology == 1) {
+                        $category = 'technology';
+                        $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `category` = '$category'";
+                        $articles = mysqli_query($conn, $sql);
+                        $articlesArray = mysqli_fetch_all($articles, MYSQLI_ASSOC);
+                        foreach ($articlesArray as $row) {
+                            echo '<tr><td> <a href="readArticle.php?article=', $row['title'], '">', $row['title'], "</a></td><td>", $row['username'], "</td><td>", $row['category'], "</td></tr>";
+                        }
                     }
-                }
-                if ($politics == 1) {
-                    $category = 'politics';
-                    $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `category` = '$category'";
-                    $articles = mysqli_query($conn, $sql);
-                    $articlesArray = mysqli_fetch_all($articles, MYSQLI_ASSOC);
-                    foreach ($articlesArray as $row) {
-                        echo '<tr><td> <a href="readArticle.php?article=', $row['title'], '">', $row['title'], "</a></td><td>", $row['username'], "</td><td>", $row['category'], "</td></tr>";
+                    if ($politics == 1) {
+                        $category = 'politics';
+                        $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `category` = '$category'";
+                        $articles = mysqli_query($conn, $sql);
+                        $articlesArray = mysqli_fetch_all($articles, MYSQLI_ASSOC);
+                        foreach ($articlesArray as $row) {
+                            echo '<tr><td> <a href="readArticle.php?article=', $row['title'], '">', $row['title'], "</a></td><td>", $row['username'], "</td><td>", $row['category'], "</td></tr>";
+                        }
                     }
-                }
-                ?>
-            </table>
-        <?php
-        }
-        ?>
+                    ?>
+            </tbody>
+        </table>
+            <?php
+            }
+            ?>
+        </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 
 </html>
