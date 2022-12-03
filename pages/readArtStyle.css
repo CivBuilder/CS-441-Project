@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,200&family=Oxygen&family=Piazzolla:ital,opsz,wght@1,8..30,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Newsreader:opsz,wght@6..72,200&family=Oxygen&family=Piazzolla:ital,opsz,wght@1,8..30,300&display=swap');
+
+body{
+    background: url('./photos/altBack.jpg') no-repeat center center/cover;
+    position: relative;
+    background-size: cover;
+    height: 100%;
+    background-attachment: fixed;
+   
+}
+.mainContainer{
+    
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.75);
+    background-size: cover;
+    background-attachment: fixed;
+    color : #fff;
+    margin: auto;
+    padding: 1rem;
+    flex-direction: column;
+    justify-content: space-between;
+    color:black;
+    border-radius: 35px;
+}
+
+.mainContainer .header img{
+    height:225px;
+
+}
+
+.mainContainer .home .button input{
+    font-size: .75rem;
+    color : rgb(255, 255, 255);
+    border-radius: 35px;
+    border: 1px solid rgba(255,255,255,0.9);
+    background: url('./photos/background.jpg') no-repeat center center/cover;
+    margin-bottom: 10px;
+    width: 250px;
+    height: 20px;
+    font-weight: bold;
+}
+
+.mainContainer .article h1{
+    font-family: 'Fredoka One', sans-serif;
+    text-align: center;
+}
+
+.mainContainer .article h2{
+    font-family: 'Fredoka One', sans-serif;
+    text-align: center;
+}
+
+.mainContainer .article p{
+    font-family: 'Newsreader', sans-serif;
+    font-weight: 900;
+}
