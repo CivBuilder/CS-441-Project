@@ -13,6 +13,7 @@
 <body>
     <div class="mainContainer">
         <?php
+    
         // get table of users
         $user  = 'root';                // server username
         $pass  = '';                    // server password
@@ -29,6 +30,10 @@
 
 
         session_start();
+        if (!isset($_SESSION['username'])) {
+            header("Location:index.php");
+        }
+
         $type = $_SESSION['type'];
         // $_SESSION['type'] = "admin";    // debug, manually set to admin :)
         $disabled = 'disabled';

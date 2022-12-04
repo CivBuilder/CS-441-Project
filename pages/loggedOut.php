@@ -10,7 +10,7 @@
 <body>
     <div class="mainContainer">
         <center><h1>Thank you for visiting:</h1><h1> The Shallot</h1></center>
-        <form action="login.php">
+        <form action="index.php">
             <div class="button">
                 <center><input type="submit" value="Log Back In"></center>
             </div>
