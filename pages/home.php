@@ -83,7 +83,7 @@
                         if (value === "article") {
                             let byName = document.getElementById("byName");
                             let searchBar = document.getElementById("searchBar");
-                            byName.innerHTML = "by name: ";
+                            byName.innerHTML = "by keyword: ";
                             searchBar.style.display = "inline";
                         } else {
                             let byName = document.getElementById("byName");
@@ -96,7 +96,7 @@
                 </script>
                 <select name="searchType" id="searchType" onchange="render_search()">
                     <option value="category">Categories</option>
-                    <option value="article">Article</option>
+                    <option value="article">Articles</option>
                 </select>
                 <!-- element for search type -->
                 <p id="byName" style="display:inline">to subscribe to </p>
