@@ -36,7 +36,7 @@
 
 
         ?>
-        <div class ="categories">
+        <div class="categories">
             <?php
             if ($searchType == 'category') {
             ?>
@@ -45,7 +45,7 @@
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="sports" name="sportsCategory" value="sports">
                         <label class="form-check-label" for="sports">Sports</label>
-                        
+
                     </div>
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="business" name="businessCategory" value="business">
@@ -62,48 +62,48 @@
                     <div class="subButton">
                         <center><input type="submit" value="Subscribe"></center>
                     </div>
-                   
+
                 </form>
         </div>
-        <form action="home.php" class ="et">
-            <div class = "home">
+        <form action="home.php" class="et">
+            <div class="home">
                 <center><input type="submit" value="E.T. Phone Home"></center>
             </div>
         </form>
-            <?php
-        }
-        // searching for articles
-        else {
-            // get articles
-            $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `title` LIKE '%$title%'";
-            $articles = mysqli_query($conn, $sql);
-            $articlesArray = mysqli_fetch_all($articles, MYSQLI_ASSOC);
-            if (empty($articlesArray)) {
-                echo "<h2>No articles found that match search term.</h2>";
-            } else {
-            ?>
+        <?php
+            }
+            // searching for articles
+            else {
+                // get articles
+                $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `title` LIKE '%$title%'";
+                $articles = mysqli_query($conn, $sql);
+                $articlesArray = mysqli_fetch_all($articles, MYSQLI_ASSOC);
+                if (empty($articlesArray)) {
+                    echo "<h2>No articles found that match search term.</h2>";
+                } else {
+        ?>
             <table class="table">
                 <thead>
                     <tr>
-                    <th scope="col">Article Name</th>
-                    <th scope="col">Author</th>
-                    <th scope="col">Category</th>
+                        <th scope="col">Article Name</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Category</th>
                     </tr>
                 </thead>
-                <?php
-                foreach ($articlesArray as $row) {
-                    echo '<tr><td> <a href="readArticle.php?article=', $row['title'],'">' , $row['title'],"</a></td><td>", $row['username'], "</td><td>", $row['category'], "</td></tr>";
-                }
-            }
-                ?>
-                </table>
             <?php
-
-        }
-
+                    foreach ($articlesArray as $row) {
+                        echo '<tr><td> <a href="readArticle.php?article=', $row['title'], '">', $row['title'], "</a></td><td>", $row['username'], "</td><td>", $row['category'], "</td></tr>";
+                    }
+                }
             ?>
+            </table>
+        <?php
+
+            }
+
+        ?>
     </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 
 </html>
