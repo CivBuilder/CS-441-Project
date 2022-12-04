@@ -1,54 +1,63 @@
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,200&family=Oxygen&family=Piazzolla:ital,opsz,wght@1,8..30,300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Newsreader:opsz,wght@6..72,200&family=Oxygen&family=Piazzolla:ital,opsz,wght@1,8..30,300&display=swap');
 
-body{
+body {
     background: url('./photos/altBack.jpg') no-repeat center center/cover;
     position: relative;
     background-size: cover;
     height: 100%;
     background-attachment: fixed;
-   
+
 }
-.mainContainer{
+
+.mainContainer {
     position: relative;
     background-color: rgba(255, 255, 255, 0.75);
     background-size: cover;
     background-attachment: fixed;
-    color : #fff;
+    color: #fff;
     margin: auto;
     padding: 1rem;
     flex-direction: column;
     justify-content: space-between;
-    color:black;
+    color: black;
     border-radius: 35px;
 }
-.mainContainer .subContainer{
+
+.mainContainer .subContainer {
     margin: auto;
     position: center;
     background-color: rgba(255, 255, 255, 0.85);
     background-size: cover;
     background-attachment: fixed;
-    color : #fff;
+    color: #fff;
     padding: 1rem;
     flex-direction: column;
     justify-content: space-between;
-    color:black;
+    color: black;
     border-radius: 35px;
 }
 
-.mainContainer .title{
-   
+.mainContainer .title {
+
     font-family: 'Fredoka One', sans-serif;
     color: black;
     font-size: 55px;
     text-align: Center;
 }
 
-.mainContainer .subContainer .tab-content .table .table-group-divider .button input{
+#userError {
+
+    font-family: 'Fredoka One', sans-serif;
+    color: black;
+    text-align: Center;
+}
+
+.mainContainer .subContainer .tab-content .table .table-group-divider .button input {
     font-size: 1rem;
-    color : rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
     border-radius: 35px;
-    border: 1px solid rgba(255,255,255,0.9);
+    border: 1px solid rgba(255, 255, 255, 0.9);
     background: url('./photos/background.jpg') no-repeat center center/cover;
     margin-bottom: 10px;
     width: 110px;
@@ -56,11 +65,11 @@ body{
     font-weight: bold;
 }
 
-.mainContainer .homeBtn input{
+.mainContainer .homeBtn input {
     font-size: 1rem;
-    color : rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
     border-radius: 35px;
-    border: 1px solid rgba(255,255,255,0.9);
+    border: 1px solid rgba(255, 255, 255, 0.9);
     background: url('./photos/background.jpg') no-repeat center center/cover;
     margin-bottom: 10px;
     margin-top: 10px;
@@ -69,11 +78,11 @@ body{
     font-weight: bold;
 }
 
-.mainContainer .subContainer .tab-content .table .table-group-divider .remove input{
+.mainContainer .subContainer .tab-content .table .table-group-divider .remove input {
     font-size: 1rem;
-    color : rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
     border-radius: 35px;
-    border: 1px solid rgba(255,255,255,0.9);
+    border: 1px solid rgba(255, 255, 255, 0.9);
     background: url('./photos/background.jpg') no-repeat center center/cover;
     margin-bottom: 10px;
     width: 110px;

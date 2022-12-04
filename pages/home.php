@@ -61,13 +61,15 @@
                 </div>
             </div>
         </form>
-        <form action="admin.php" class="admin">
-            <div class="portal">
-                <div class="button">
-                    <input type="submit" value="Admin Portal">
+        <?php if ($type !== "user") { ?>
+            <form action="admin.php" class="admin">
+                <div class="portal">
+                    <div class="button">
+                        <input type="submit" value="Admin Portal">
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        <?php } ?>
         <div style='text-align:center' class="logo">
             <img src="./photos/logoShallot.png" alt="">
             <hr>
