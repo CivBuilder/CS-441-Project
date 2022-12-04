@@ -96,3 +96,18 @@ body{
 .p1{
     visibility: hidden;
 }
+
+.mainContainer .button2 input{
+    padding: .7rem 1rem;
+    font-size: 1rem;
+    color : rgb(255, 255, 255);
+    border-radius: 35px;
+    border: 1px solid rgba(255,255,255,0.9);
+    background: url('./photos/background.jpg') no-repeat center center/cover;
+    margin-bottom: 10px;
+    width: 300px;
+    height: 40px;
+    font-family: 'Newsreader', sans-serif;
+    margin-top: 5px;
+    font-weight: bold;
+}

@@ -13,6 +13,7 @@
 <body>
     <div class="mainContainer">
         <?php
+    
         // get table of users
         $user  = 'root';                // server username
         $pass  = '';                    // server password
@@ -29,6 +30,10 @@
 
 
         session_start();
+        if (!isset($_SESSION['username'])) {
+            header("Location:index.php");
+        }
+
         $type = $_SESSION['type'];
         // $_SESSION['type'] = "admin";    // debug, manually set to admin :)
         $disabled = 'disabled';
@@ -62,21 +67,26 @@
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
 
 
-                        <!-- MANAGE USERS -->
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">User ID</th>
-                                    <th scope="col">Username</th>
-                                    <th scope="col">User Type</th>
-                                    <th scope="col">Remove User</th>
-                                </tr>
-                            </thead>
-                            <tbody class="table-group-divider">
+                    <!-- MANAGE USERS -->
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">User ID</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">User Type</th>
                                 <?php
-                                $sql = "SELECT * FROM `usertable` ORDER BY `usertable`.`type` ASC";
-                                $sqlResult = mysqli_query($conn, $sql);
-                                $allUsers = mysqli_fetch_all($sqlResult);
+                                if ($_SESSION['type'] == "admin") {
+                                echo
+                                '<th scope="col">Remove User</th>';
+                                }
+                                ?>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            <?php
+                            $sql = "SELECT * FROM `usertable` ORDER BY `usertable`.`type` ASC";
+                            $sqlResult = mysqli_query($conn, $sql);
+                            $allUsers = mysqli_fetch_all($sqlResult);
 
                                 foreach ($allUsers as $row) {
                                     echo "<tr><td>", $row[3], "</td>";             // print user ID
@@ -103,17 +113,18 @@
                         </select> 
                     </form>
                     </td>';
-                                    } else if ($row[2] == "admin") {      // onl type is set
-                                        echo
-                                        '<td>
+                                } else if ($row[2] == "admin") {      // admin type is set
+                                    echo
+                                    '<td>
                     <select disabled name="userTypeName', $row[3], '">
                         <option value="admin">admin</option>
                     </select>
                     </td>';
                                     }
 
-                                    if ($row[2] != "admin") {       // can only remove non-admin
-                                        echo '<td>
+
+                                if ($row[2] != "admin" && $_SESSION['type'] == "admin") {       // can only remove non-admin
+                                    echo '<td>
                 <form method="post" class = "button">
                     <input type="submit" name="deleteUser', $row[3], '" value="Remove">
                 </form></td>';        // press to delete
