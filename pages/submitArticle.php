@@ -44,11 +44,10 @@
             <center><img src="photos/logoShallot.png" alt=""></center>
         </div>
         <hr>
+        <a href="home.php">
+            <button id="cancelButton">Country Roads...</button>
+        </a>
         <form action="postArticle.php" method="post" class="article">
-
-            <a href="home.php">
-                <button id="cancelButton">Country Roads...</button>
-            </a>
 
             <div class="text">
                 <center>
