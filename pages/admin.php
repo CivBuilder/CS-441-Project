@@ -126,7 +126,7 @@
                                 if ($row[2] != "admin" && $_SESSION['type'] == "admin") {       // can only remove non-admin
                                     echo '<td>
                 <form method="post" class = "button">
-                    <input type="submit" name="deleteUser', $row[3], '" value="Remove">
+                    <input type="submit" onclick="return confirm(',"'Are you sure you want to Remove this user?'",')" name="deleteUser', $row[3], '" value="Remove">
                 </form></td>';        // press to delete
                                     }
                                     echo "</tr>";
@@ -213,13 +213,15 @@
                                     // press to decline
                                     echo '<td>                           
                 <form method="post" class ="remove">
-                    <input type="submit" name="deleteArticle', $row[4], '" value="', $deleteButton, '">
+                    <input type="submit" onclick="return confirm(',"'Are you sure you want to Remove this Article?'",')" name="deleteArticle', $row[4], '" value="', $deleteButton, '">
                 </form></td>';
                                     echo "</tr>";
                                 }
                                 ?>
                             </tbody>
                         </table>
+                        
+
 
                         <?php
                         // approve or delete articles
@@ -239,7 +241,6 @@
                         ?>
                     </div>
                 </div>
-
 
 
             </div>
