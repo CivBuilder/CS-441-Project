@@ -64,7 +64,12 @@
                                 <th scope="col">User ID</th>
                                 <th scope="col">Username</th>
                                 <th scope="col">User Type</th>
-                                <th scope="col">Remove User</th>
+                                <?php
+                                if ($_SESSION['type'] == "admin") {
+                                echo
+                                '<th scope="col">Remove User</th>';
+                                }
+                                ?>
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">
@@ -98,7 +103,7 @@
                         </select> 
                     </form>
                     </td>';
-                                } else if ($row[2] == "admin") {      // onl type is set
+                                } else if ($row[2] == "admin") {      // admin type is set
                                     echo
                                     '<td>
                     <select disabled name="userTypeName', $row[3], '">
@@ -107,7 +112,8 @@
                     </td>';
                                 }
 
-                                if ($row[2] != "admin") {       // can only remove non-admin
+
+                                if ($row[2] != "admin" && $_SESSION['type'] == "admin") {       // can only remove non-admin
                                     echo '<td>
                 <form method="post" class = "button">
                     <input type="submit" name="deleteUser', $row[3], '" value="Remove">
