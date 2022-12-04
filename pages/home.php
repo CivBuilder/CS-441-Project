@@ -88,7 +88,7 @@
                         } else {
                             let byName = document.getElementById("byName");
                             let searchBar = document.getElementById("searchBar");
-                            byName.innerHTML = "to subscribe to: ";
+                            byName.innerHTML = "to subscribe to ";
                             searchBar.style.display = "none";
                         }
 
