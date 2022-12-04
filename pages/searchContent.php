@@ -78,7 +78,7 @@
             // searching for articles
             else {
                 // get articles
-                $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `title` LIKE '%$title%'";
+                $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `title` LIKE '%$title%' AND `status`='approved'";
                 $articles = mysqli_query($conn, $sql);
                 $articlesArray = mysqli_fetch_all($articles, MYSQLI_ASSOC);
                 if (empty($articlesArray)) {
