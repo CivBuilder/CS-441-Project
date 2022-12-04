@@ -53,38 +53,53 @@
         }
     }
     ?>
-    <div class = "mainContainer">
-        <form action="logout.php" class="log"> 
-            <div class ="logout">
+    <div class="mainContainer">
+        <form action="logout.php" class="log">
+            <div class="logout">
                 <div class="button">
                     <input type="submit" value="Logout">
                 </div>
             </div>
         </form>
-        <!--<a href="index.php">Click to logout</a>-->
-        <!--<button>Admin Portal</button>-->
-        <form action="admin.php" class="admin"> 
-            <div class ="portal">
+        <form action="admin.php" class="admin">
+            <div class="portal">
                 <div class="button">
                     <input type="submit" value="Admin Portal">
                 </div>
             </div>
         </form>
-        <!--<a href="admin.php">Click to go to admin portal (WIP)</a>-->
         <div style='text-align:center' class="logo">
             <img src="./photos/logoShallot.png" alt="">
             <hr>
             <?php echo "<h2> Welcome $username! </h2>"; ?>
 
-            <form action="searchContent.php" method="post" class ="search">
+            <form action="searchContent.php" method="post" class="search">
                 Search for
-                <select name="searchType" id="searchType">
-                    <option value="category">Category</option>
+                <!-- condiitonal render for "by name" on dropdown -->
+                <script>
+                    function render_search() {
+                        let value = document.getElementById("searchType").value;
+
+                        if (value === "article") {
+                            let paragraph = document.getElementById("byName");
+                            paragraph.innerHTML = "by name: ";
+                            paragraph.style.display = "inline";
+                        }
+                        else {
+                            let paragraph = document.getElementById("byName");
+                            paragraph.style.display = "none";
+                        }
+
+                    }
+                </script>
+                <select name="searchType" id="searchType" onchange="render_search()">
+                    <option value="category">Categories</option>
                     <option value="article">Article</option>
                 </select>
-                by name:
+                <!-- element for by "name" if needed -->
+                <p id="byName" style="display:none"></p>
                 <span class="textBox">
-                    <input type="text" name="searchContent" >
+                    <input type="text" name="searchContent">
                 </span>
                 <span class="textBtn">
                     <input type="submit" value="Search">
@@ -93,81 +108,77 @@
         </div>
 
         <div class="dash">
-            <center><h3>Dashboard</h3></center>
-            <form action="submitArticle.php" class = "art">
+            <center>
+                <h3>Dashboard</h3>
+            </center>
+            <form action="submitArticle.php" class="art">
                 <center><input type="submit" value="Submit Article"></center>
             </form>
         </div>
 
         <div class="newsfeed">
-            <center><h1>Newsfeed</h1></center>
+            <center>
+                <h1>Newsfeed</h1>
+            </center>
             <?php
             if ($sports == 0 && $business == 0 && $technology == 0 && $politics == 0) {
                 echo "<h2 style='text-align:center'>You don't have any subscriptions yet, search for categories and subscribe to your interests</h2>";
             } else {
-            ?> 
+            ?>
         </div>
         <table class="table">
             <thead>
                 <tr>
-                <th scope="col">Article Name</th>
-                <th scope="col">Author</th>
-                <th scope="col">Category</th>
+                    <th scope="col">Article Name</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Category</th>
                 </tr>
             </thead>
-                <!--
-                <table>
-                    <tr>
-                        <td> <b> Article Name</b></td>
-                        <td> <b> Author</b></td>
-                        <td> <b> Category</b></td>
-                    </tr>
-                -->
-                <tbody class="table-group-divider">
-                    <?php
-                    if ($sports == 1) {
-                        $category = 'sports';
-                        $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `category` = '$category'";
-                        $articles = mysqli_query($conn, $sql);
-                        $articlesArray = mysqli_fetch_all($articles, MYSQLI_ASSOC);
-                        foreach ($articlesArray as $row) {
-                            echo '<tr><td> <a href="readArticle.php?article=', $row['title'], '">', $row['title'], "</a></td><td>", $row['username'], "</td><td>", $row['category'], "</td></tr>";
-                        }
+            <tbody class="table-group-divider">
+                <?php
+                if ($sports == 1) {
+                    $category = 'sports';
+                    $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `category` = '$category'";
+                    $articles = mysqli_query($conn, $sql);
+                    $articlesArray = mysqli_fetch_all($articles, MYSQLI_ASSOC);
+                    foreach ($articlesArray as $row) {
+                        echo '<tr><td> <a href="readArticle.php?article=', $row['title'], '">', $row['title'], "</a></td><td>", $row['username'], "</td><td>", $row['category'], "</td></tr>";
                     }
-                    if ($business == 1) {
-                        $category = 'business';
-                        $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `category` = '$category'";
-                        $articles = mysqli_query($conn, $sql);
-                        $articlesArray = mysqli_fetch_all($articles, MYSQLI_ASSOC);
-                        foreach ($articlesArray as $row) {
-                            echo '<tr><td> <a href="readArticle.php?article=', $row['title'], '">', $row['title'], "</a></td><td>", $row['username'], "</td><td>", $row['category'], "</td></tr>";
-                        }
+                }
+                if ($business == 1) {
+                    $category = 'business';
+                    $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `category` = '$category'";
+                    $articles = mysqli_query($conn, $sql);
+                    $articlesArray = mysqli_fetch_all($articles, MYSQLI_ASSOC);
+                    foreach ($articlesArray as $row) {
+                        echo '<tr><td> <a href="readArticle.php?article=', $row['title'], '">', $row['title'], "</a></td><td>", $row['username'], "</td><td>", $row['category'], "</td></tr>";
                     }
-                    if ($technology == 1) {
-                        $category = 'technology';
-                        $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `category` = '$category'";
-                        $articles = mysqli_query($conn, $sql);
-                        $articlesArray = mysqli_fetch_all($articles, MYSQLI_ASSOC);
-                        foreach ($articlesArray as $row) {
-                            echo '<tr><td> <a href="readArticle.php?article=', $row['title'], '">', $row['title'], "</a></td><td>", $row['username'], "</td><td>", $row['category'], "</td></tr>";
-                        }
+                }
+                if ($technology == 1) {
+                    $category = 'technology';
+                    $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `category` = '$category'";
+                    $articles = mysqli_query($conn, $sql);
+                    $articlesArray = mysqli_fetch_all($articles, MYSQLI_ASSOC);
+                    foreach ($articlesArray as $row) {
+                        echo '<tr><td> <a href="readArticle.php?article=', $row['title'], '">', $row['title'], "</a></td><td>", $row['username'], "</td><td>", $row['category'], "</td></tr>";
                     }
-                    if ($politics == 1) {
-                        $category = 'politics';
-                        $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `category` = '$category'";
-                        $articles = mysqli_query($conn, $sql);
-                        $articlesArray = mysqli_fetch_all($articles, MYSQLI_ASSOC);
-                        foreach ($articlesArray as $row) {
-                            echo '<tr><td> <a href="readArticle.php?article=', $row['title'], '">', $row['title'], "</a></td><td>", $row['username'], "</td><td>", $row['category'], "</td></tr>";
-                        }
+                }
+                if ($politics == 1) {
+                    $category = 'politics';
+                    $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `category` = '$category'";
+                    $articles = mysqli_query($conn, $sql);
+                    $articlesArray = mysqli_fetch_all($articles, MYSQLI_ASSOC);
+                    foreach ($articlesArray as $row) {
+                        echo '<tr><td> <a href="readArticle.php?article=', $row['title'], '">', $row['title'], "</a></td><td>", $row['username'], "</td><td>", $row['category'], "</td></tr>";
                     }
-                    ?>
+                }
+                ?>
             </tbody>
         </table>
-            <?php
+    <?php
             }
-            ?>
-        </div>
+    ?>
+    </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
