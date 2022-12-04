@@ -143,7 +143,7 @@
                 <?php
                 if ($sports == 1) {
                     $category = 'sports';
-                    $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `category` = '$category'";
+                    $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `category` = '$category' AND `status`='approved'";
                     $articles = mysqli_query($conn, $sql);
                     $articlesArray = mysqli_fetch_all($articles, MYSQLI_ASSOC);
                     foreach ($articlesArray as $row) {
@@ -152,7 +152,7 @@
                 }
                 if ($business == 1) {
                     $category = 'business';
-                    $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `category` = '$category'";
+                    $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `category` = '$category' AND `status`='approved'";
                     $articles = mysqli_query($conn, $sql);
                     $articlesArray = mysqli_fetch_all($articles, MYSQLI_ASSOC);
                     foreach ($articlesArray as $row) {
@@ -161,7 +161,7 @@
                 }
                 if ($technology == 1) {
                     $category = 'technology';
-                    $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `category` = '$category'";
+                    $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `category` = '$category' AND `status`='approved'";
                     $articles = mysqli_query($conn, $sql);
                     $articlesArray = mysqli_fetch_all($articles, MYSQLI_ASSOC);
                     foreach ($articlesArray as $row) {
@@ -170,7 +170,7 @@
                 }
                 if ($politics == 1) {
                     $category = 'politics';
-                    $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `category` = '$category'";
+                    $sql = "SELECT `title`, `username`, `category` FROM `newstable` WHERE `category` = '$category' AND `status`='approved'";
                     $articles = mysqli_query($conn, $sql);
                     $articlesArray = mysqli_fetch_all($articles, MYSQLI_ASSOC);
                     foreach ($articlesArray as $row) {
