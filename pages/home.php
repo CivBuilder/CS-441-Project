@@ -81,13 +81,15 @@
                         let value = document.getElementById("searchType").value;
 
                         if (value === "article") {
-                            let paragraph = document.getElementById("byName");
-                            paragraph.innerHTML = "by name: ";
-                            paragraph.style.display = "inline";
-                        }
-                        else {
-                            let paragraph = document.getElementById("byName");
-                            paragraph.style.display = "none";
+                            let byName = document.getElementById("byName");
+                            let searchBar = document.getElementById("searchBar");
+                            byName.innerHTML = "by name: ";
+                            searchBar.style.display = "inline";
+                        } else {
+                            let byName = document.getElementById("byName");
+                            let searchBar = document.getElementById("searchBar");
+                            byName.innerHTML = "to subscribe to: ";
+                            searchBar.style.display = "none";
                         }
 
                     }
@@ -96,9 +98,10 @@
                     <option value="category">Categories</option>
                     <option value="article">Article</option>
                 </select>
-                <!-- element for by "name" if needed -->
-                <p id="byName" style="display:none"></p>
-                <span class="textBox">
+                <!-- element for search type -->
+                <p id="byName" style="display:inline">to subscribe to </p>
+                <!-- search bar if searching by article -->
+                <span class="textBox" id="searchBar" style="display:none">
                     <input type="text" name="searchContent">
                 </span>
                 <span class="textBtn">
