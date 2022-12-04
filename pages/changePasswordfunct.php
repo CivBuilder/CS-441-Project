@@ -38,7 +38,7 @@ if(sizeof($users)==1){      // username and password is validated
     header("Location: changePassword.php?msg= Password change successful!");
 
 }else{      // username and password invalid
-    echo'User was not found!';
+    $size = sizeof($users);
     header("Location: changePassword.php?msg= Check Username/Password");
 }
 

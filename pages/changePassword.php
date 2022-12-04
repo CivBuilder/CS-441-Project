@@ -26,7 +26,7 @@
                     <h3>Old Password</h3>
                 </div>
                 <div class="input">
-                <center><input type="text" name="username" id="" placeholder="Enter Old Password..."></center>
+                <center><input type="text" name="password" id="" placeholder="Enter Old Password..."></center>
                 </div>
             </div>
             <div class ="userNew">
@@ -34,7 +34,7 @@
                     <h3>New Password</h3>
                 </div>
                 <div class="input">
-                <center><input type="text" name="username" id="" placeholder="Enter New Password..."></center>
+                <center><input type="text" name="newPassword" id="" placeholder="Enter New Password..."></center>
                 </div>
             </div>
 
