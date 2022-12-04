@@ -63,13 +63,18 @@
         </form>
         <!--<a href="index.php">Click to logout</a>-->
         <!--<button>Admin Portal</button>-->
-        <form action="admin.php" class="admin"> 
-            <div class ="portal">
-                <div class="button">
-                    <input type="submit" value="Admin Portal">
+        <?php
+        if ($type != 'user') {
+            echo
+            '<form action="admin.php" class="admin"> 
+                <div class ="portal">
+                    <div class="button">
+                        <input type="submit" value="Admin Portal">
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>';
+        };
+        ?>
         <!--<a href="admin.php">Click to go to admin portal (WIP)</a>-->
         <div style='text-align:center' class="logo">
             <img src="./photos/logoShallot.png" alt="">
