@@ -45,17 +45,19 @@
         }
         ?>
 
-        <br>
-        <a href="index.php">Click to Login</a>
-        <br>
-        <a href="changePassword.php">Click to Change Password</a>
-
-
         <div class="button2">
             <form action="changePassword.php">
                 <center><input type="submit" value="Change Password" ></center>
             </form>    
         </div>
+
+        <div class="button2">
+            <form action="index.php">
+                <center><input type="submit" value="Back to Login" ></center>
+            </form>    
+        </div>
+
+
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
