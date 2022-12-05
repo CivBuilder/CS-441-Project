@@ -67,7 +67,6 @@
                 </Center>
             </div>
             <center>
-
                 <input type="radio" id="sports" name="articleCategory" value="sports">
                 <label for="sports">Sports</label>
 

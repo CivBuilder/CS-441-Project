@@ -10,28 +10,24 @@ $db = 'newsApp';
 $conn =  mysqli_connect('localhost', $user, $pass, $db);
 
 // logic handling for checkbox
-if(isset($_POST['sportsCategory'])) {
+if (isset($_POST['sportsCategory'])) {
     $sports = 1;
-}
-else {
+} else {
     $sports = 0;
 }
-if(isset($_POST['businessCategory'])) {
+if (isset($_POST['businessCategory'])) {
     $business = 1;
-}
-else {
+} else {
     $business = 0;
 }
-if(isset($_POST['technologyCategory'])) {
+if (isset($_POST['technologyCategory'])) {
     $technology = 1;
-}
-else {
+} else {
     $technology = 0;
 }
-if(isset($_POST['politicsCategory'])) {
+if (isset($_POST['politicsCategory'])) {
     $politics = 1;
-}
-else {
+} else {
     $politics = 0;
 }
 

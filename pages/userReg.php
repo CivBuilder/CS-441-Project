@@ -30,17 +30,18 @@ invalidPassword($password);
 $sql = "INSERT INTO `$dbSub`(`username`, `password`, `type`) VALUES ('$username', '$password', 'user')";
 
 // set username and type for session
-if($conn->query($sql)){
+if ($conn->query($sql)) {
     session_start();
     $_SESSION['username'] = $username;
     $_SESSION['type'] = 'user';
     header("location:$successLink");
-}else{
+} else {
     echo $conn->error;
 }
 
 // check if password is at least 3 characters
-function invalidPassword($passwordArg) {
+function invalidPassword($passwordArg)
+{
     if (!preg_match('/.{3,}/', $passwordArg)) {
         header("Location: register.php?regErr=  Password must be at least 3 characters.");
         exit();
@@ -48,7 +49,8 @@ function invalidPassword($passwordArg) {
 }
 
 // check if there are duplicate names or if name is allowed (regex)
-function invalidUsername($usernameArg) {
+function invalidUsername($usernameArg)
+{
     if (!preg_match('/^[a-zA-Z0-9_](?=.*[a-zA-Z])[a-zA-Z0-9_]{3,14}$/', $usernameArg)) {
         header("Location: register.php?regErr= Username must be between 4 and 15 characters, have at least 1 letter and can only consist of letters, numbers and underscores.");
         exit();
@@ -56,7 +58,8 @@ function invalidUsername($usernameArg) {
 }
 
 // check for duplicate username
-function duplicateUsername($usernameArg, $conn) {
+function duplicateUsername($usernameArg, $conn)
+{
     $exists = "SELECT * FROM `usertable` WHERE `username` = '$usernameArg'";
     $num = $conn->query($exists);
     if ($num->num_rows == 1) {

@@ -116,9 +116,6 @@
         </div>
 
         <div class="dash">
-            <center>
-                <h3>Dashboard</h3>
-            </center>
             <form action="submitArticle.php" class="art">
                 <center><input type="submit" value="Submit Article"></center>
             </form>

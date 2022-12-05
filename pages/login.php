@@ -1,8 +1,6 @@
 <?php
 
 // php file that logs users in from index page
-
-// echo "username: $_POST[username] , password: $_POST[password] ";
 // connect to db
 $user = 'root';
 $pass = '';
@@ -12,7 +10,7 @@ $conn =  mysqli_connect('localhost', $user, $pass, $db);
 
 // check connection
 if (!$conn) {
-	echo 'Connection failed' . mysqli_connect_error();
+    echo 'Connection failed' . mysqli_connect_error();
 }
 // get data
 // create query
@@ -22,8 +20,7 @@ $result = mysqli_query($conn, $sql);
 // fetch  the rows as an array
 $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-//print_r($users);
-if(sizeof($users)==1){
+if (sizeof($users) == 1) {
 
     // get the user's type and username
     $userType = $users[0]['type'];
@@ -37,11 +34,7 @@ if(sizeof($users)==1){
     echo $userName;
 
     header("Location: home.php");
-
-}else{
-    echo'User was not found!';
+} else {
+    echo 'User was not found!';
     header("Location: index.php?err= Check Username/Password");
-
 }
-
-?>
