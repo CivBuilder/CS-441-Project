@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="adminStyle.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <title>Admin Portal</title>
+    <title>The Shallot</title>
 </head>
 
 <body>
     <div class="mainContainer">
         <?php
-    
+
         // get table of users
         $user  = 'root';                // server username
         $pass  = '';                    // server password
@@ -27,15 +27,12 @@
             echo 'Connection failed' . mysqli_connect_error();
         }
 
-
-
         session_start();
         if (!isset($_SESSION['username'])) {
             header("Location:index.php");
         }
 
         $type = $_SESSION['type'];
-        // $_SESSION['type'] = "admin";    // debug, manually set to admin :)
         $disabled = 'disabled';
         if (isset($_SESSION['type']) && $type !== "user") {
             if ($_SESSION['type'] == "admin") {
@@ -67,26 +64,26 @@
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
 
 
-                    <!-- MANAGE USERS -->
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">User ID</th>
-                                <th scope="col">Username</th>
-                                <th scope="col">User Type</th>
+                        <!-- MANAGE USERS -->
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">User ID</th>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">User Type</th>
+                                    <?php
+                                    if ($_SESSION['type'] == "admin") {
+                                        echo
+                                        '<th scope="col">Remove User</th>';
+                                    }
+                                    ?>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider">
                                 <?php
-                                if ($_SESSION['type'] == "admin") {
-                                echo
-                                '<th scope="col">Remove User</th>';
-                                }
-                                ?>
-                            </tr>
-                        </thead>
-                        <tbody class="table-group-divider">
-                            <?php
-                            $sql = "SELECT * FROM `usertable` ORDER BY `usertable`.`type` ASC";
-                            $sqlResult = mysqli_query($conn, $sql);
-                            $allUsers = mysqli_fetch_all($sqlResult);
+                                $sql = "SELECT * FROM `usertable` ORDER BY `usertable`.`type` ASC";
+                                $sqlResult = mysqli_query($conn, $sql);
+                                $allUsers = mysqli_fetch_all($sqlResult);
 
                                 foreach ($allUsers as $row) {
                                     echo "<tr><td>", $row[3], "</td>";             // print user ID
@@ -105,17 +102,17 @@
                     </td>';
                                     } else if ($row[2] == "mod") {      // mod type is set
                                         echo
-                                        '<td> 
+                                        '<td>
                     <form name="typeForm" method="post">
                         <select ', $disabled, ' name="userTypeName', $row[3], '" onchange="this.form.submit();">
                             <option value="mod">mod</option>
                             <option value="user">user</option>
-                        </select> 
+                        </select>
                     </form>
                     </td>';
-                                } else if ($row[2] == "admin") {      // admin type is set
-                                    echo
-                                    '<td>
+                                    } else if ($row[2] == "admin") {      // admin type is set
+                                        echo
+                                        '<td>
                     <select disabled name="userTypeName', $row[3], '">
                         <option value="admin">admin</option>
                     </select>
@@ -123,10 +120,10 @@
                                     }
 
 
-                                if ($row[2] != "admin" && $_SESSION['type'] == "admin") {       // can only remove non-admin
-                                    echo '<td>
+                                    if ($row[2] != "admin" && $_SESSION['type'] == "admin") {       // can only remove non-admin
+                                        echo '<td>
                 <form method="post" class = "button">
-                    <input type="submit" onclick="return confirm(',"'Are you sure you want to Remove this user?'",')" name="deleteUser', $row[3], '" value="Remove">
+                    <input type="submit" onclick="return confirm(', "'Are you sure you want to Remove this user?'", ')" name="deleteUser', $row[3], '" value="Remove">
                 </form></td>';        // press to delete
                                     }
                                     echo "</tr>";
@@ -148,17 +145,13 @@
                             if (isset($_POST["deleteUser$row[3]"])) {       // delete user
                                 $sql = "DELETE FROM `usertable` WHERE `id` = $row[3]";
                                 mysqli_query($conn, $sql);
-                                echo "<meta http-equiv='refresh' content='0'>"; // reload the page 
+                                echo "<meta http-equiv='refresh' content='0'>"; // reload the page
                             }
                         }
                         ?>
                     </div>
                     <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                         <!-- MANAGE ARTICLES -->
-
-                        <!-- to do:
-                    add functions to change status and delete articles 
-                    add for loop to check -->
                         <table class="table">
                             <thead>
                                 <tr>
@@ -173,9 +166,7 @@
                             <tbody class="table-group-divider">
 
                                 <?php
-
                                 $disabled = '';
-
                                 $sql = "SELECT `title`,`category`,`username`,`status`,`id` FROM `newstable` ORDER BY `newstable`.`id` DESC";
                                 $sqlResult = mysqli_query($conn, $sql);
                                 $allArticles = mysqli_fetch_all($sqlResult);
@@ -201,28 +192,25 @@
                                         $deleteButton = "Decline";
                                     } else {                                // approved article
                                         echo
-                                        '<td> 
+                                        '<td>
                     <form name="typeForm" method="post">
                         <select disabled name="statusName', $row[4], '" onchange="this.form.submit();">
                             <option value="approved">approved</option>
-                        </select> 
+                        </select>
                     </form>
                     </td>';
                                     }
 
                                     // press to decline
-                                    echo '<td>                           
+                                    echo '<td>
                 <form method="post" class ="remove">
-                    <input type="submit" onclick="return confirm(',"'Are you sure you want to Remove this Article?'",')" name="deleteArticle', $row[4], '" value="', $deleteButton, '">
+                    <input type="submit" onclick="return confirm(', "'Are you sure you want to Remove this Article?'", ')" name="deleteArticle', $row[4], '" value="', $deleteButton, '">
                 </form></td>';
                                     echo "</tr>";
                                 }
                                 ?>
                             </tbody>
                         </table>
-                        
-
-
                         <?php
                         // approve or delete articles
                         foreach ($allArticles as $row) {
@@ -235,14 +223,12 @@
                             if (isset($_POST["deleteArticle$row[4]"])) {       // decline or remove article
                                 $sql = "DELETE FROM `newstable` WHERE `id` = $row[4]";
                                 mysqli_query($conn, $sql);
-                                echo "<meta http-equiv='refresh' content='0'>"; // reload the page 
+                                echo "<meta http-equiv='refresh' content='0'>"; // reload the page
                             }
                         }
                         ?>
                     </div>
                 </div>
-
-
             </div>
         <?php } ?>
         <form action="home.php" class="homeBtn">

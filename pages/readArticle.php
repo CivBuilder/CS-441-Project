@@ -12,11 +12,11 @@
 
 <body>
     <div class="mainContainer">
-        <div class = "header">
+        <div class="header">
             <center><img src="./photos/logoShallot.png" alt=""></center>
         </div>
-        <form action="home.php" class = "home">
-            <div class = "button">
+        <form action="home.php" class="home">
+            <div class="button">
                 <input type="submit" value="<- Take Me Home Tonight">
             </div>
         </form>

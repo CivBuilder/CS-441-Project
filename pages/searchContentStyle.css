@@ -1,51 +1,55 @@
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,200&family=Oxygen&family=Piazzolla:ital,opsz,wght@1,8..30,300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Newsreader:opsz,wght@6..72,200&family=Oxygen&family=Piazzolla:ital,opsz,wght@1,8..30,300&display=swap');
 
-body{
+body {
     background: url('./photos/altBack.jpg') no-repeat center center/cover;
     position: relative;
     background-size: cover;
     height: 100%;
     background-attachment: fixed;
-   
+
 }
-.mainContainer{
-    
+
+.mainContainer {
+
     position: relative;
     background-color: rgba(255, 255, 255, 0.75);
     background-size: cover;
     background-attachment: fixed;
-    color : #fff;
+    color: #fff;
     margin: auto;
     padding: 1rem;
     flex-direction: column;
     justify-content: space-between;
-    color:black;
+    color: black;
     border-radius: 35px;
 }
-.mainContainer .image img{
+
+.mainContainer .image img {
     height: 225px;
     margin-bottom: 80px;
 }
-.mainContainer .categories{
+
+.mainContainer .categories {
     margin: auto;
     position: center;
-    background-color: rgba(32,210,254, 0.8);
+    background-color: rgba(32, 210, 254, 0.8);
     background-size: cover;
     background-attachment: fixed;
-    color : #fff;
+    color: #fff;
     max-width: 500px;
     padding: 1rem;
     flex-direction: column;
     justify-content: space-between;
-    color:black;
+    color: black;
     border-radius: 35px;
 }
-.mainContainer .categories .switch .subButton input{
+
+.mainContainer .categories .switch .subButton input {
     font-size: 1rem;
-    color : rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
     border-radius: 35px;
-    border: 1px solid rgba(255,255,255,0.9);
+    border: 1px solid rgba(255, 255, 255, 0.9);
     background: url('./photos/background.jpg') no-repeat center center/cover;
     margin-bottom: 10px;
     width: 110px;
@@ -53,17 +57,17 @@ body{
     font-weight: bold;
 }
 
-.mainContainer .categories h2{
+.mainContainer .categories h2 {
     font-family: 'Fredoka One', sans-serif;
     text-align: center;
     color: blueviolet;
 }
 
-.mainContainer .et .home input{
+.mainContainer .et .home input {
     font-size: 1rem;
-    color : rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
     border-radius: 35px;
-    border: 1px solid rgba(255,255,255,0.9);
+    border: 1px solid rgba(255, 255, 255, 0.9);
     background: url('./photos/background.jpg') no-repeat center center/cover;
     margin-bottom: 10px;
     margin-top: 10px;
@@ -72,11 +76,11 @@ body{
     font-weight: bold;
 }
 
-.mainContainer .end .home input{
+.mainContainer .end .home input {
     font-size: 1rem;
-    color : rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
     border-radius: 35px;
-    border: 1px solid rgba(255,255,255,0.9);
+    border: 1px solid rgba(255, 255, 255, 0.9);
     background: url('./photos/background.jpg') no-repeat center center/cover;
     margin-bottom: 10px;
     margin-top: 10px;
