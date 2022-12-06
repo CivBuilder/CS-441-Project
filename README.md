@@ -1,8 +1,8 @@
-# CS-441-Project
+# The Shallot
 
-this project is a full CRUD news application
+During the Fall 2022 semester we built a full-stack CRUD news application. It utilizes JS, PHP, SQL, and Bootstrap.
 
-Directory:
-    Pages: HTML Webpages to host different sections of the app
-    Scripts: All JS Scripts needed by the app to function
-    Images: All images being used in the app
+This application requires two schemas to use it:
+usertable:
+
+newstable:
